@@ -21,7 +21,7 @@ explore <- function(){
     })
   }
   
-  #source those functions baby
+  #source insult function
   source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Random%20Insult%20Generator.R")
   
   #source riddle library from github
