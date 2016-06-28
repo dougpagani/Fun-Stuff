@@ -1,6 +1,7 @@
 #Random Insult Generator
 #Author: Dean Mirabito
 #Date: 6/28/2016
+
 Insult_Gen <- function(){
   
   #Building library
@@ -16,9 +17,9 @@ Insult_Gen <- function(){
 
   #Generating insults
   print("Welcome to the Random Insult Generator!")
-  continue <- "Y"
+  continue <- "1"
 
-  while(continue == "Y"){
+  while(continue == "1"){
     level <- readline("What intensity of insult do you need? Type 1, 2 or 3: ")
     if(level == "1"){
       nkey <- as.numeric(sample(yy, 1))
@@ -38,7 +39,7 @@ Insult_Gen <- function(){
       insult <- paste(adj[akey], adj[a2key], noun[nkey], "!")
       print(insult)
     }
-    continue <- readline("How is that? Type Y to try again, type N to use that one: ")
+    continue <- readline("How is that? Type 1 to try again, type 2 to use that one: ")
   }#end while loop
   
   insult

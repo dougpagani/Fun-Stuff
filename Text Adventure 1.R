@@ -56,7 +56,7 @@ explore <- function(){
     print("You step from your boat with your assistant at your side.")
     
     #assistant entry
-    ass <- readline("What was their name again? ")
+    ass <- readline("What was your assistant's name again? ")
     print(paste0("Oh yes, that was their name... ", ass, "!"))
     print(paste0("You and ", ass, " stand next to the water, looking at the dense forest that waits ahead."))
     print("You can hear low noises coming from within the dark canopy.")
