@@ -22,10 +22,10 @@ explore <- function(){
   }
   
   #source insult function
-  source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Random%20Insult%20Generator.R")
+  source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Random%20Insult%20Generator.R")
   
   #source riddle library from github
-  rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Riddle%20Library.csv")
+  rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Riddle%20Library.csv")
   riddle_lib <- read.csv(text = rid_library)
   riddle <- as.character(riddle_lib$Riddle)
   answer <- as.character(riddle_lib$Answer)

@@ -6,7 +6,7 @@ Insult_Gen <- function(){
   
   #Building library
   library(RCurl) #install if you error out here
-  lib_raw <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Insult%20Library.csv")
+  lib_raw <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Insult%20Library.csv")
   lib <- read.csv(text = lib_raw)
   
   #formatting
