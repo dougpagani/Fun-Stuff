@@ -7,7 +7,10 @@ Adventure1 <- function(){
   #user inputs
   #make sure that these point to the location of your functions and libraries
   source("C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Random Insult Generator.R")
-  riddle_lib <- read.csv("C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Riddle Library.csv")
+  
+  library(RCurl) #install if you error out here
+  rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Riddle%20Library.csv")
+  riddle_lib <- read.csv(text = rid_library)
   
   #prep work
   continue <- 1

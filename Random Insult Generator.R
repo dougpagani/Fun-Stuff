@@ -3,10 +3,14 @@
 #Date: 6/28/2016
 Insult_Gen <- function(){
   
-  #Building libraries
-  lib <- read.csv("C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Insult Library.csv")
+  #Building library
+  library(RCurl) #install if you error out here
+  lib_raw <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Insult%20Library.csv")
+  lib <- read.csv(text = lib_raw)
+  
+  #formatting
   adj <- as.character(lib$Adj)
-  noun <- as.character(subset(lib$Noun, lib$Noun != ""))
+  noun <- as.character(lib$Noun)
   xx <- as.numeric(length(adj))
   yy <- as.numeric(length(noun))
 
