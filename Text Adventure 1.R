@@ -2,7 +2,7 @@
 #Author: Dean Mirabito
 #Date: 6/28/2016
 
-Adventure1 <- function(){
+explore <- function(){
   
   ###########
   #Prep Work#
@@ -47,15 +47,21 @@ Adventure1 <- function(){
   #start the game
   while(continue == 1){
     
-    print("Welcome to Text Adventure 1: Explorers of the Unknown!")
+    print("Welcome to Explorers of the Unknown!")
+    
+    #username entry
     username <- readline("What is your name, adventurer? ")
     print(paste0("Welcome, ", username, "!"))
     print("You are an explorer who has just arrived on a previously undiscovered island in the Pacific.") 
     print("You step from your boat with your assistant at your side.")
+    
+    #assistant entry
     ass <- readline("What was their name again? ")
     print(paste0("Oh yes, that was their name... ", ass, "!"))
     print(paste0("You and ", ass, " stand next to the water, looking at the dense forest that waits ahead."))
     print("You can hear low noises coming from within the dark canopy.")
+    
+    #first tree break - forest or ocean
     c1 <- readline("What would you like to do? Type 1 to venture into the forest, type 2 to walk along the beach: ")
     
     ##################
@@ -138,15 +144,18 @@ Adventure1 <- function(){
       if(correct_test == TRUE){
         print("The giant man says, I am very surprised by your intelligence! ")
       } else {
-        print(paste0("The giant man yells, You idiot! The answer was ", real_answer, " ."))
-        print(paste0("The giant man throws", ass, " into the cauldron and stokes the fire."))
+        print(paste0("The giant man yells, You idiot! The answer was ", real_answer, "."))
+        print(paste0("The giant man throws ", ass, " into the cauldron and stokes the fire."))
         print("You are trapped in the giant man's grasp, forced to listen to the screams of your assistant.")
-        print("The giant man turns his head towards you and says, And you'll be my dessert!")
+        print("The giant man turns his head towards you and says, You'll be my dessert!")
         print(paste0("GAME OVER, ", username, "!"))
         break
       }#end riddle outcome
       
-            
+      print("He continues, You are two explorers of the highest honor! Please, take this gift.")
+      print("He hands you a flat, dark object and says, This here is the finest chocolate in all the land!")
+      print("You take the chocolate, thank him graciously and return to the ship, satisfied with your adventuring for the day.")
+      continue <- readline("Congrats on surviving your adventure! Would you like to venture out again? Type 1 to replay, type 0 to quit: ")
       
     }#end forest adventure
     
@@ -155,9 +164,14 @@ Adventure1 <- function(){
     #################
     
     if(c1 == "2"){
-    
+      print("No beach adventure developed yet!")
+      break
     }#end beach adventure
         
   }#end while loop
+  
+  #ending message
+  print("Thanks for playing Explorers of the Unknown!")
+  print("This game was developed by Dean Mirabito, June 2016.")
   
 }#end function
