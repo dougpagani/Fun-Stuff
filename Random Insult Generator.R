@@ -18,22 +18,25 @@ Insult_Gen <- function(){
     level <- readline("What intensity of insult do you need? Type 1, 2 or 3: ")
     if(level == "1"){
       nkey <- as.numeric(sample(yy, 1))
-      print(paste("How about:", noun[nkey], "!"))
+      insult <- paste(noun[nkey], "!")
+      print(insult)
     }
     if(level == "2"){
       akey <- as.numeric(sample(xx, 1))
       nkey <- as.numeric(sample(yy, 1))
-      print(paste("How about:", adj[akey], noun[nkey], "!"))
+      insult <- paste(adj[akey], noun[nkey], "!")
+      print(insult)
     }
     if(level == "3"){
       akey <- as.numeric(sample(xx, 1))
       a2key <- as.numeric(sample(xx, 1))
       nkey <- as.numeric(sample(yy, 1))
-      print(paste("How about:", adj[akey], adj[a2key], noun[nkey], "!"))
+      insult <- paste(adj[akey], adj[a2key], noun[nkey], "!")
+      print(insult)
     }
-    continue <- readline("Need another? Type Y or N: ")
+    continue <- readline("How is that? Type Y to try again, type N to use that one: ")
   }#end while loop
   
-  print("Thanks for using the Random Insult Generator! We hope you hurt someone's feelings.")
+  insult
   
 }#end function
