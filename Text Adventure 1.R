@@ -4,16 +4,31 @@
 
 Adventure1 <- function(){
   
-  #user inputs
-  #make sure that these point to the location of your functions and libraries
-  source("C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Random Insult Generator.R")
+  ###########
+  #Prep Work#
+  ###########
   
-  library(RCurl) #install if you error out here
+  #source functions from github
+  library(RCurl) #install this package if you error out here
+  
+  source_https <- function(url, ...) {
+    
+    #parse and evaluate each .R script
+    sapply(c(url, ...), function(u) {
+      eval(parse(text = getURL(u, followlocation = TRUE, 
+                               cainfo = system.file("CurlSSL", "cacert.pem", package = "RCurl"))), 
+                               envir = .GlobalEnv)
+    })
+  }
+  
+  #source those functions baby
+  source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Random%20Insult%20Generator.R")
+  
+  #source riddle library from github
   rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Riddle%20Library.csv")
   riddle_lib <- read.csv(text = rid_library)
-  
-  #prep work
-  continue <- 1
+  riddle <- as.character(riddle_lib$Riddle)
+  answer <- as.character(riddle_lib$Answer)
   
   #randomising function
   dice <- function(sides = 6){
@@ -22,9 +37,12 @@ Adventure1 <- function(){
     as.numeric(n)
   }
   
-  #riddle libraries
-  riddle <- as.character(riddle_lib$Riddle)
-  answer <- as.character(riddle_lib$Answer)
+  #prep for while loop that will hold game
+  continue <- 1
+  
+  #####################
+  #Let's play the game#
+  #####################
   
   #start the game
   while(continue == 1){
@@ -40,7 +58,10 @@ Adventure1 <- function(){
     print("You can hear low noises coming from within the dark canopy.")
     c1 <- readline("What would you like to do? Type 1 to venture into the forest, type 2 to walk along the beach: ")
     
-    #forest adventure
+    ##################
+    #Forest Adventure#
+    ##################
+    
     if(c1 == "1"){
       print("The forest is thick and hard to move through.")
       print("After 2 hours of trailblazing, you are tired and hungry.")
@@ -104,7 +125,7 @@ Adventure1 <- function(){
       print("You are carried into the giant man's hut. A large black cauldron stands full of water.")
       print("The giant man speaks, I will cook your friend for my lunch if you cannot answer my riddle!")
       print(paste0(ass, " looks nervously across at you."))
-      print("The giant man says, Okay here is my riddle.")
+      print("The giant man says, Okay here is my riddle:")
       
       #riddle time
       f3 <- dice(7)
@@ -129,7 +150,10 @@ Adventure1 <- function(){
       
     }#end forest adventure
     
-    #beach adventure
+    #################
+    #Beach Adventure#
+    #################
+    
     if(c1 == "2"){
     
     }#end beach adventure
