@@ -106,8 +106,6 @@ explore <- function(){
           readline()
           print("The fruit is quite tasty! You notice a trail of the fruit leads away to the east.")
           readline()
-          points.total <- points.total + 2
-          readline()
         }
       }#end if fruit = 1
       
@@ -268,15 +266,18 @@ explore <- function(){
   }#end while loop
   
   #ending message
+  print("Based on your total points: ")
+  readline()
+  
   if(Total.Points == 0){
     print("You are a POOR explorer!")
     readline()
   }
-  if(0 < Total.Points < 5){
+  if(Total.Points > 0 & Total.Points < 5){
     print("You are an AMATEUR explorer!")
     readline()
   }
-  if(5 < Total.Points < 10){
+  if(Total.Points > 5 & Total.Points < 10){
     print("You are an INTERMEDIATE explorer!")
     readline()
   }
