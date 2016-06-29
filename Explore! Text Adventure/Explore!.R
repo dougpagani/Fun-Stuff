@@ -164,8 +164,21 @@ explore <- function(){
     #################
     
     if(c1 == "2"){
-      print("No beach adventure developed yet!")
-      break
+      print("You can feel the heat of the sand through the soles of your boots.")
+      
+      #treasure hunt
+      g1 <- dice(2)
+      if(g1 == 1){
+        print("As you look down the beach, you notice something shiny glimmer in the sand for a moment.")
+        digging <- readline("Would you like to try to dig for it? Type 1 to dig, type 2 to move on: ")
+        
+        if(digging == "1"){
+          print(paste0("Okay, get your eyes ready, ", username, "! You will only have 25 seconds"))
+          
+          
+        }#end if choose to dig
+      }#end if dice = 1
+      
     }#end beach adventure
         
   }#end while loop
