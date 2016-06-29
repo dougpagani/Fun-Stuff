@@ -22,7 +22,8 @@ explore <- function(){
   }
   
   #source insult function
-  source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Random%20Insult%20Generator.R")
+  source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Random%20Insult%20Generator.R",
+               "https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Search%20Game.R")
   
   #source riddle library from github
   rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Riddle%20Library.csv")
@@ -37,8 +38,9 @@ explore <- function(){
     as.numeric(n)
   }
   
-  #prep for while loop that will hold game
+  #prep for while loop that will hold game and points
   continue <- 1
+  points.total <- 0
   
   #####################
   #Let's play the game#
@@ -52,14 +54,20 @@ explore <- function(){
     #username entry
     username <- readline("What is your name, adventurer? ")
     print(paste0("Welcome, ", username, "!"))
-    print("You are an explorer who has just arrived on a previously undiscovered island in the Pacific.") 
+    readline()
+    print("You are an explorer who has just arrived on a previously undiscovered island in the Pacific.")
+    readline()
     print("You step from your boat with your assistant at your side.")
+    readline()
     
     #assistant entry
     ass <- readline("What was your assistant's name again? ")
     print(paste0("Oh yes, that was their name... ", ass, "!"))
+    readline()
     print(paste0("You and ", ass, " stand next to the water, looking at the dense forest that waits ahead."))
+    readline()
     print("You can hear low noises coming from within the dark canopy.")
+    readline()
     
     #first tree break - forest or ocean
     c1 <- readline("What would you like to do? Type 1 to venture into the forest, type 2 to walk along the beach: ")
@@ -70,21 +78,27 @@ explore <- function(){
     
     if(c1 == "1"){
       print("The forest is thick and hard to move through.")
+      readline()
       print("After 2 hours of trailblazing, you are tired and hungry.")
+      readline()
       print(paste0("You and ", ass, " sit down and you notice a strange orange fruit underneath a bush."))
+      readline()
       
       #fruit choice
-      fruit <- readline(paste0("What would you like to do? Type 1 to eat it, type 2 to make ", ass, " eat it: "))
+      fruit <- readline(paste0("What would you like to do? Type 1 to eat it, type 2 to make ", ass, " eat it, type 3 to investigate: "))
       
       #eat it yourself
       if(fruit == "1"){
         f1 <- dice(10)
         if(f1 == 1){
           print("The fruit was poisonous! You die a horrible, painful death.")
+          readline()
           print(paste0(ass, " is left to wander the forest alone. GAME OVER, ", username, "!"))
+          readline()
           break
         } else {
           print("The fruit is quite tasty! You notice a trail of the fruit leads away to the east.")
+          readline()
         }
       }#end if fruit = 1
       
@@ -93,17 +107,24 @@ explore <- function(){
         f1 <- dice(5)
         if(f1 == 1){
           print(paste0("The fruit was poisonous! ", ass, " throws up and dies a horrible, painful death."))
+          readline()
           print("You cannot bear to go on alone. You bite into the fruit and collapse.")
+          readline()
           print(paste0("GAME OVER, ", username, "!"))
+          readline()
           break
         } else {
           print(paste0(ass, " says the fruit is quite tasty! You notice a trail of the fruit leads away to the east."))
+          readline()
         }
       }#end if fruit = 2
       
       print("You follow the trail of fruit a half mile, arriving at a crude hut.")
+      readline()
       print("A strange man emerges from the hut. He is seven feet tall and wears bird feathers on his head.")
+      readline()
       print(paste0("You and ", ass, " stand transfixed."))
+      readline()
       
       #reacting to islander choice
       conv <- readline("What would you like to do? Type 1 to bow down, type 2 to insult him: ")
@@ -111,27 +132,37 @@ explore <- function(){
       #bow down
       if(conv == "1"){
         print(paste0("The giant man lumbers forward and lifts you and ", ass, " into the air."))
+        readline()
       }#end if conv = 1
       
       #insult
       if(conv == "2"){
         verb_attack <- Insult_Gen()
         print(paste0("You yell at the top of your lungs, You are a ", verb_attack))
+        readline()
         print("The giant man lumbers towards you.")
+        readline()
         f2 <- dice(2)
         if(f2 == 1){
           print(paste0("He raises his giant fists into the air and clobbers you and ", ass, "."))
+          readline()
           print(paste0("Your puny skulls are no match for the power of his strikes. GAME OVER, ", username, "!"))
+          readline()
           break
         } else {
           print(paste0("The giant man lifts you and ", ass, " into the air."))
+          readline()
         }
       }#end if conv = 2
       
       print("You are carried into the giant man's hut. A large black cauldron stands full of water.")
+      readline()
       print("The giant man speaks, I will cook your friend for my lunch if you cannot answer my riddle!")
+      readline()
       print(paste0(ass, " looks nervously across at you."))
+      readline()
       print("The giant man says, Okay here is my riddle:")
+      readline()
       
       #riddle time
       f3 <- dice(7)
@@ -143,18 +174,27 @@ explore <- function(){
       #if correct
       if(correct_test == TRUE){
         print("The giant man says, I am very surprised by your intelligence! ")
+        readline()
       } else {
         print(paste0("The giant man yells, You idiot! The answer was ", real_answer, "."))
+        readline()
         print(paste0("The giant man throws ", ass, " into the cauldron and stokes the fire."))
+        readline()
         print("You are trapped in the giant man's grasp, forced to listen to the screams of your assistant.")
+        readline()
         print("The giant man turns his head towards you and says, You'll be my dessert!")
+        readline()
         print(paste0("GAME OVER, ", username, "!"))
+        readline()
         break
       }#end riddle outcome
       
       print("He continues, You are two explorers of the highest honor! Please, take this gift.")
+      readline()
       print("He hands you a flat, dark object and says, This here is the finest chocolate in all the land!")
+      readline()
       print("You take the chocolate, thank him graciously and return to the ship, satisfied with your adventuring for the day.")
+      readline()
       continue <- readline("Congrats on surviving your adventure! Would you like to venture out again? Type 1 to replay, type 0 to quit: ")
       
     }#end forest adventure
@@ -172,11 +212,29 @@ explore <- function(){
         print("As you look down the beach, you notice something shiny glimmer in the sand for a moment.")
         digging <- readline("Would you like to try to dig for it? Type 1 to dig, type 2 to move on: ")
         
+        #choose to dig
         if(digging == "1"){
-          print(paste0("Okay, get your eyes ready, ", username, "! You will only have 25 seconds"))
+          print(paste0("Okay, get your eyes ready, ", username, "! You will only have 25 seconds."))
+          print("Find the single LETTER that is mixed among the sand of numbers.")
           
+          #Digging game
+          diff.search <- dice(8)
+          search_game(diff.search)
           
-        }#end if choose to dig
+          #results of digging
+          if(time.elapsed > 25){
+            print(paste0("Just out of reach! You were a little too slow at ", time.elapsed, " seconds."))
+          }
+          if(found.it != wow){
+            print(paste0("Your eyes ain't as good as they used to be! There was a ", wow, " hiding in there!"))
+          }
+          if(found.it == wow & time.elapsed < 25){
+            print(paste0("You found the letter ", wow, "! And it only took you ", time.elapsed, " seconds."))
+            print(paste0("You have earned ", diff.search, " points!"))
+            points.total <- points.total + diff.search
+          }
+        
+          }#end if choose to dig
       }#end if dice = 1
       
     }#end beach adventure
