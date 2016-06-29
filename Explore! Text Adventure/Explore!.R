@@ -23,22 +23,16 @@ explore <- function(){
     })
   }
   
-  #source insult function
+  #source functions from Github
   source_https("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Random%20Insult%20Generator.R",
-               "https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Search%20Game.R")
+               "https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Search%20Game.R",
+               "https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Dice%20Roll.R")
   
   #source riddle library from github
   rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Riddle%20Library.csv")
   riddle_lib <- read.csv(text = rid_library)
   riddle <- as.character(riddle_lib$Riddle)
   answer <- as.character(riddle_lib$Answer)
-  
-  #randomising function
-  dice <- function(sides = 6){
-    xx <- 1:sides
-    n <- sample(xx, 1)
-    as.numeric(n)
-  }
   
   #prep for while loop that will hold game
   continue <- 1
