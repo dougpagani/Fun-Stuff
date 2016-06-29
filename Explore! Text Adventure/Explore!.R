@@ -9,7 +9,9 @@ explore <- function(){
   ###########
   
   #source functions from github
-  library(RCurl) #install this package if you error out here
+  #error out here and inform user if RCurl not installed
+  tryCatch({library(RCurl)}, 
+           error = function(e) {stop("Please install the package RCurl to play this game.")})
   
   source_https <- function(url, ...) {
     
@@ -38,7 +40,7 @@ explore <- function(){
     as.numeric(n)
   }
   
-  #prep for while loop that will hold game and points
+  #prep for while loop that will hold game
   continue <- 1
   
   #Make points visible to player
@@ -273,15 +275,15 @@ explore <- function(){
     print("You are a POOR explorer!")
     readline()
   }
-  if(Total.Points > 0 & Total.Points < 5){
+  if(Total.Points > 0 & Total.Points <= 6){
     print("You are an AMATEUR explorer!")
     readline()
   }
-  if(Total.Points > 5 & Total.Points < 10){
+  if(Total.Points > 6 & Total.Points <= 11){
     print("You are an INTERMEDIATE explorer!")
     readline()
   }
-  if(Total.Points > 10){
+  if(Total.Points > 11){
     print("You are a MASTER explorer!")
     readline()
   }
