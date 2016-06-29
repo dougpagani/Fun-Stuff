@@ -40,7 +40,9 @@ explore <- function(){
   
   #prep for while loop that will hold game and points
   continue <- 1
-  points.total <- 0
+  
+  #Make points visible to player
+  Total.Points <<- 0
   
   #####################
   #Let's play the game#
@@ -93,11 +95,18 @@ explore <- function(){
         if(f1 == 1){
           print("The fruit was poisonous! You die a horrible, painful death.")
           readline()
-          print(paste0(ass, " is left to wander the forest alone. GAME OVER, ", username, "!"))
+          print(paste0(ass, " is left to wander the forest alone."))
           readline()
+          Total.Points <<- 0
+          print(paste0("GAME OVER, ", username, "!"))
           break
         } else {
+          print("You've earned 2 points for your digestive bravery!")
+          Total.Points <<- Total.Points + 2
+          readline()
           print("The fruit is quite tasty! You notice a trail of the fruit leads away to the east.")
+          readline()
+          points.total <- points.total + 2
           readline()
         }
       }#end if fruit = 1
@@ -110,10 +119,14 @@ explore <- function(){
           readline()
           print("You cannot bear to go on alone. You bite into the fruit and collapse.")
           readline()
+          Total.Points <<- 0
           print(paste0("GAME OVER, ", username, "!"))
           readline()
           break
         } else {
+          print("You've earned 1 point for your assistant's digestive bravery!")
+          readline()
+          Total.Points <<- Total.Points + 1
           print(paste0(ass, " says the fruit is quite tasty! You notice a trail of the fruit leads away to the east."))
           readline()
         }
@@ -131,6 +144,9 @@ explore <- function(){
       
       #bow down
       if(conv == "1"){
+        print("You've earned 1 point for your show of respect!")
+        readline()
+        Total.Points <<- Total.Points + 1
         print(paste0("The giant man lumbers forward and lifts you and ", ass, " into the air."))
         readline()
       }#end if conv = 1
@@ -140,13 +156,19 @@ explore <- function(){
         verb_attack <- Insult_Gen()
         print(paste0("You yell at the top of your lungs, You are a ", verb_attack))
         readline()
+        print("You've earned 5 points for your display of fearlessness!")
+        readline()
+        Total.Points <<- Total.Points + 5
         print("The giant man lumbers towards you.")
         readline()
         f2 <- dice(2)
         if(f2 == 1){
           print(paste0("He raises his giant fists into the air and clobbers you and ", ass, "."))
           readline()
-          print(paste0("Your puny skulls are no match for the power of his strikes. GAME OVER, ", username, "!"))
+          print("Your puny skulls are no match for the power of his strikes.")
+          readline()
+          Total.Points <<- 0
+          print(paste0("GAME OVER, ", username, "!"))
           readline()
           break
         } else {
@@ -173,6 +195,9 @@ explore <- function(){
       
       #if correct
       if(correct_test == TRUE){
+        print("You've earned 5 points for your quick thinking!")
+        readline()
+        Total.Points <<- Total.Points + 5
         print("The giant man says, I am very surprised by your intelligence! ")
         readline()
       } else {
@@ -184,6 +209,7 @@ explore <- function(){
         readline()
         print("The giant man turns his head towards you and says, You'll be my dessert!")
         readline()
+        Total.Points <<- 0
         print(paste0("GAME OVER, ", username, "!"))
         readline()
         break
@@ -242,6 +268,23 @@ explore <- function(){
   }#end while loop
   
   #ending message
+  if(Total.Points == 0){
+    print("You are a POOR explorer!")
+    readline()
+  }
+  if(0 < Total.Points < 5){
+    print("You are an AMATEUR explorer!")
+    readline()
+  }
+  if(5 < Total.Points < 10){
+    print("You are an INTERMEDIATE explorer!")
+    readline()
+  }
+  if(Total.Points > 10){
+    print("You are a MASTER explorer!")
+    readline()
+  }
+  
   print("Thanks for playing Explorers of the Unknown!")
   print("This game was developed by Dean Mirabito, June 2016.")
   
