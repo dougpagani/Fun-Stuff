@@ -29,7 +29,7 @@ search_game <- function(difficulty = 5){
   
   #results of digging
   if(time.elapsed > 25){
-    print(paste0("Just out of reach! You were a little too slow at ", time.elapsed, " seconds."))
+    print(paste0("Just out of reach! You were a little too slow at ", time.elapsed[3], " seconds."))
     readline()
   }
   if(found.it != wow){
@@ -37,11 +37,11 @@ search_game <- function(difficulty = 5){
     readline()
   }
   if(found.it == wow & time.elapsed < 25){
-    print(paste0("You found the letter ", wow, "! And it only took you ", time.elapsed, " seconds."))
+    print(paste0("You found the letter ", wow, "! And it only took you ", time.elapsed[3], " seconds."))
     readline()
-    print(paste0("You have earned ", diff.search, " points for your keen eye!"))
+    print(paste0("You have earned ", difficulty, " points for your keen eye!"))
     readline()
-    Total.Points <- Total.Points + diff.search
+    Total.Points <- Total.Points + difficulty
   }
   
 }#end function
