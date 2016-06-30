@@ -244,6 +244,7 @@ explore <- function(){
           #Digging game
           diff.search <- dice(8)
           search_game(diff.search)
+          Total.Points <<- Total.Points
           
           break
           }#end if choose to dig

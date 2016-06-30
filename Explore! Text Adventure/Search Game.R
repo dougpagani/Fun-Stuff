@@ -6,6 +6,7 @@ search_game <- function(difficulty = 5){
   
   master <- as.numeric(1:9)
   maze <- 1
+  Total.Points <- 0
   
   #Generate sand to search through
   for(i in 1:difficulty){
@@ -41,7 +42,7 @@ search_game <- function(difficulty = 5){
     readline()
     print(paste0("You have earned ", difficulty, " points for your keen eye!"))
     readline()
-    Total.Points <- Total.Points + difficulty
+    Total.Points <<- Total.Points + difficulty
   }
   
 }#end function
