@@ -225,38 +225,30 @@ explore <- function(){
     
     if(c1 == "2"){
       print("You can feel the heat of the sand through the soles of your boots.")
+      readline()
       
       #treasure hunt
       g1 <- dice(2)
       if(g1 == 1){
         print("As you look down the beach, you notice something shiny glimmer in the sand for a moment.")
+        readline()
         digging <- readline("Would you like to try to dig for it? Type 1 to dig, type 2 to move on: ")
         
         #choose to dig
         if(digging == "1"){
           print(paste0("Okay, get your eyes ready, ", username, "! You will only have 25 seconds."))
+          readline()
           print("Find the single LETTER that is mixed among the sand of numbers.")
+          readline()
           
           #Digging game
           diff.search <- dice(8)
           search_game(diff.search)
           
-          #results of digging
-          if(time.elapsed > 25){
-            print(paste0("Just out of reach! You were a little too slow at ", time.elapsed, " seconds."))
-          }
-          if(found.it != wow){
-            print(paste0("Your eyes ain't as good as they used to be! There was a ", wow, " hiding in there!"))
-          }
-          if(found.it == wow & time.elapsed < 25){
-            print(paste0("You found the letter ", wow, "! And it only took you ", time.elapsed, " seconds."))
-            print(paste0("You have earned ", diff.search, " points!"))
-            points.total <- points.total + diff.search
-          }
-        
+          break
           }#end if choose to dig
       }#end if dice = 1
-      
+      break
     }#end beach adventure
         
   }#end while loop

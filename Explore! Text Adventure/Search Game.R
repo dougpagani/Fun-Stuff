@@ -19,9 +19,6 @@ search_game <- function(difficulty = 5){
   wow <- sample(LETTERS, 1)
   maze[key_place] <- wow
   
-  #make answer available to parent env
-  wow <<- wow
-  
   readline("Press enter to start the search: ")
   
   #measure time elapsed during search
@@ -30,8 +27,21 @@ search_game <- function(difficulty = 5){
   found.it <- readline("Enter your finding here in uppercase: ")
   time.elapsed <- proc.time() - start.time
   
-  #make finding and time.elapsed accessible to parent env
-  time.elapsed <<- time.elapsed[3]
-  found.it <<- found.it
+  #results of digging
+  if(time.elapsed > 25){
+    print(paste0("Just out of reach! You were a little too slow at ", time.elapsed, " seconds."))
+    readline()
+  }
+  if(found.it != wow){
+    print(paste0("Your eyes ain't as good as they used to be! There was a ", wow, " hiding in there!"))
+    readline()
+  }
+  if(found.it == wow & time.elapsed < 25){
+    print(paste0("You found the letter ", wow, "! And it only took you ", time.elapsed, " seconds."))
+    readline()
+    print(paste0("You have earned ", diff.search, " points for your keen eye!"))
+    readline()
+    Total.Points <- Total.Points + diff.search
+  }
   
 }#end function
