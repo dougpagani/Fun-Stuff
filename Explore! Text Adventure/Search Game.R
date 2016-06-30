@@ -28,7 +28,7 @@ search_game <- function(difficulty = 5){
   time.elapsed <- proc.time() - start.time
   
   #results of digging
-  if(time.elapsed > 25){
+  if(time.elapsed[3] > 25){
     print(paste0("Just out of reach! You were a little too slow at ", time.elapsed[3], " seconds."))
     readline()
   }
@@ -36,7 +36,7 @@ search_game <- function(difficulty = 5){
     print(paste0("Your eyes ain't as good as they used to be! There was a ", wow, " hiding in there!"))
     readline()
   }
-  if(found.it == wow & time.elapsed < 25){
+  if(found.it == wow & time.elapsed[3] < 25){
     print(paste0("You found the letter ", wow, "! And it only took you ", time.elapsed[3], " seconds."))
     readline()
     print(paste0("You have earned ", difficulty, " points for your keen eye!"))
