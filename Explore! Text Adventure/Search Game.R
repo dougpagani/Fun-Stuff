@@ -42,7 +42,7 @@ search_game <- function(difficulty = 5){
     readline()
     print(paste0("You have earned ", difficulty, " points for your keen eye!"))
     readline()
-    defend <<- 1
+    talisman <<- 1
     Total.Points <<- Total.Points + difficulty
   }
   

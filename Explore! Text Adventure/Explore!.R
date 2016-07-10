@@ -329,22 +329,37 @@ explore <- function(){
           readline("Ready? Press enter to battle: ")
           
           #battle game
-          for(i in 1:5){
-            Sys.sleep(dice(5))
-            attack.start <- proc.time()
-            readline("--||-----")
-            defense.time <- proc.time() - attack.start
-            
-            #too slow
-            if(defense.time > 0.25){
-              print(paste0("You took ", defense.time, " seconds to defend yourself - it was too slow!"))
-              readline()
-              break
-            }
-          } #end battle game
           
-          #end game if defense time was too slow
-          if(defense.time > 0.25){
+          #1st iteration
+          Sys.sleep(dice(5))
+          attack.start <- proc.time()
+          readline("--||-----")
+          defense.time <- proc.time() - attack.start
+            
+          #too slow
+          if(defense.time[3] > 0.5){
+            print(paste0("You took ", defense.time[3], " seconds to defend yourself - it was too slow!"))
+            readline()
+            print("The mermaid dodges to the left of your counter-attack and stabs you through the heart.")
+            readline()
+            print(paste0("She grabs ", ass, " and drags them into the water, never to be seen again."))
+            readline()
+            Total.Points <<- 0
+            print(paste0("GAME OVER, ", username, "!"))
+            readline()
+            break
+            }
+            
+          #2nd iteration
+          Sys.sleep(dice(5))
+          attack.start <- proc.time()
+          readline("--||-----")
+          defense.time <- proc.time() - attack.start
+          
+          #too slow
+          if(defense.time[3] > 0.5){
+            print(paste0("You took ", defense.time[3], " seconds to defend yourself - it was too slow!"))
+            readline()
             print("The mermaid dodges to the left of your counter-attack and stabs you through the heart.")
             readline()
             print(paste0("She grabs ", ass, " and drags them into the water, never to be seen again."))
@@ -355,8 +370,29 @@ explore <- function(){
             break
           }
           
+          #3rd iteration
+          Sys.sleep(dice(5))
+          attack.start <- proc.time()
+          readline("--||-----")
+          defense.time <- proc.time() - attack.start
+          
+          #too slow
+          if(defense.time[3] > 0.5){
+            print(paste0("You took ", defense.time[3], " seconds to defend yourself - it was too slow!"))
+            readline()
+            print("The mermaid dodges to the left of your counter-attack and stabs you through the heart.")
+            readline()
+            print(paste0("She grabs ", ass, " and drags them into the water, never to be seen again."))
+            readline()
+            Total.Points <<- 0
+            print(paste0("GAME OVER, ", username, "!"))
+            readline()
+            break
+          }
+          #end battle game
+          
           #successful defense against mermaid
-          print("You've earned 5 points for defending yourself against all five attacks!")
+          print("You've earned 5 points for defending yourself against all three attacks!")
           readline()
           Total.Points <<- Total.Points + 5
           print("The mermaid backs off and says, You are a formidable opponent!")
@@ -401,7 +437,7 @@ explore <- function(){
         readline()
         print("The mermaid lets go of your hand. Your throat is immediately clogged with water. The surface of the water is hundreds of feet above you!")
         readline()
-        print(paste0("As you and ", ass, "start to swim desperately upwards for air, the mermaid grabs you both by the ankles."))
+        print(paste0("As you and ", ass, " start to swim desperately upwards for air, the mermaid grabs you both by the ankles."))
         readline()
         print("She holds you there under the water. You struggle and thrash as the water overwhelms you, and everything becomes very quiet...")
         readline()
