@@ -48,6 +48,8 @@ explore <- function(){
   while(continue == 1){
     
     print("Welcome to Explorers of the Unknown!")
+    Total.Points <<- 0
+    readline()
     
     #username entry
     username <- readline("What is your name, adventurer? ")
@@ -228,7 +230,7 @@ explore <- function(){
       readline()
       
       #treasure hunt
-      g1 <- dice(2)
+      g1 <- dice(1) #set to 1 so that it happens every time
       if(g1 == 1){
         print("As you look down the beach, you notice something shiny glimmer in the sand for a moment.")
         readline()
@@ -244,9 +246,47 @@ explore <- function(){
           #Digging game
           diff.search <- dice(8)
           search_game(diff.search)
-          Total.Points <<- Total.Points
+          Total.Points <<- Total.Points + diff.search
           }#end if choose to dig
       }#end if dice = 1
+      
+      print("You continue your journey down the beach. The waves crash gently against the shore.")
+      readline()
+      print("You notice a strange apparition up ahead. Can it really be?")
+      readline()
+      print("It seems there is a mermaid basking in the sun on the beach!")
+      readline()
+      print("Try to be charming so that she does not run away!")
+      readline()
+      
+      #mad libs style charmer
+      adj1 <- readline("Enter an adjective: ")
+      noun1 <- readline("Enter a noun: ")
+      adj2 <- readline("Enter an adjective: ")
+      bp1 <- readline("Enter a body part: ")
+      print("You call out to her,")
+      readline()
+      print(paste0("Hello there, ", adj2, " mermaid! You have all the beauty of a ", noun1, ". I am especially impressed by your ", adj1, " ",bp1, "!"))
+      readline()
+      
+      print(paste0("The mermaid turns to face you and ", ass, "."))
+      readline()
+      print("She says, You talk very strangely! But I am touched by your feelings.")
+      readline()
+      print("If you can solve my riddle, I have great wonders to show you!")
+      readline()
+      print("She continues, You must descramble the secret word! Your hint: It is related to the ocean.")
+      readline()
+      
+      #choose word to descramble
+      
+      
+      print(paste0("Here is your word: "))
+      
+      
+      
+      
+      
       break
     }#end beach adventure
         
