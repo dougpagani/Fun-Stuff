@@ -28,11 +28,13 @@ explore <- function(){
                "https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Search%20Game.R",
                "https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Dice%20Roll.R")
   
-  #source riddle library from github
+  #source riddle library and word library from github
   rid_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Riddle%20Library.csv")
   riddle_lib <- read.csv(text = rid_library)
   riddle <- as.character(riddle_lib$Riddle)
   answer <- as.character(riddle_lib$Answer)
+  word_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Explore!%20Text%20Adventure/Word%20Library.csv")
+  word_lib <- read.csv(text = word_library, header = FALSE)
   
   #prep for while loop that will hold game
   continue <- 1
@@ -217,7 +219,7 @@ explore <- function(){
       readline()
       print("You take the chocolate, thank him graciously and return to the ship, satisfied with your adventuring for the day.")
       readline()
-      continue <- readline("Congrats on surviving your adventure! Would you like to venture out again? Type 1 to replay, type 0 to quit: ")
+      break
       
     }#end forest adventure
     
@@ -278,11 +280,108 @@ explore <- function(){
       print("She continues, You must descramble the secret word! Your hint: It is related to the ocean.")
       readline()
       
-      #choose word to descramble
+      #Word descramble activity
+      hhh <- as.numeric(length(word_lib$V1))
+      iii <- dice(hhh)
+      keyword <- as.character(word_lib[iii, 1])
+      separatedword <- strsplit(keyword, split = character(0)) [[1]]
+      scrambledword <- sample(separatedword, as.numeric(length(separatedword)))
+      scrambledword <- paste(scrambledword, collapse = "")
       
+      print("Press enter to see your word puzzle: ")
+      readline()
+      print(scrambledword)
+      user_word <- readline("Descramble the word and enter it here: ")
       
-      print(paste0("Here is your word: "))
+      if(user_word == keyword){
+        print("You have earned 5 points for your intellectual gymnastics!")
+        readline()
+        Total.Points <<- Total.Points + 5
+      } else {
+        print(paste0("The mermaid crys, You buffoon! The word was ", keyword, "!"))
+        readline()
+        print(paste0("The mermaid picks up a shell with a pointy tip and approaches you and ", ass, "."))
+        readline()
+        print("You are frozen with fear. You dig in your pockets to see if there is anything to defend yourself with.")
+        readline()
+        
+        #if search game not played successfully...
+        if(defend != 1){
+          print(paste0("There is nothing there! The mermaid is upon you. She stabs at you and ", ass, "."))
+          readline()
+          print("You are no match for her power and quickness!")
+          readline()
+          Total.Points <<- 0
+          print(paste0("GAME OVER, ", username, "!"))
+          readline()
+          break
+        } #end search unsuccessful
+        
+        if(defend == 1){
+          print("What is this? You pull from your pocket the talisman you found in the sand.")
+          readline()
+          print("It has a sharp edge! You raise it in front of you and you can see fear creep into the mermaid's eyes.")
+          readline()
+          print("It is time to do battle!")
+          readline()
+          print("Each time you see the mermaid's dagger --||----- press Enter quickly to defend yourself!")
+          readline()
+          readline("Ready? Press enter to battle: ")
+          
+          #battle game
+          for(i in 1:5){
+            Sys.sleep(dice(5))
+            attack.start <- proc.time()
+            readline("--||-----")
+            defense.time <- proc.time() - attack.start
+            
+            #too slow
+            if(defense.time > 0.25){
+              print(paste0("You took ", defense.time, " seconds to defend yourself - it was too slow!"))
+              readline()
+              break
+            }
+          } #end battle game
+          
+          #end game if defense time was too slow
+          if(defense.time > 0.25){
+            print("The mermaid dodges to the left of your counter-attack and stabs you through the heart.")
+            readline()
+            print(paste0("She grabs ", ass, " and drags them into the water, never to be seen again."))
+            readline()
+            Total.Points <<- 0
+            print(paste0("GAME OVER, ", username, "!"))
+            readline()
+            break
+          }
+          
+          #successful defense against mermaid
+          print("You've earned 5 points for defending yourself against all five attacks!")
+          readline()
+          Total.Points <<- Total.Points + 5
+          print("The mermaid backs off and says, You are a formidable opponent!")
+          readline()
+          print("I did not expect you to possess such powerful fighting skills. Please, take this as an apology.")
+          readline()
+          print("She hands you a flat, dark object and says, This here is the finest chocolate in all the land!")
+          readline()
+          print("You take the chocolate, thank her graciously and return to the ship, satisfied with your adventuring for the day.")
+          readline()
+          break
       
+        } #end defending against mermaid
+      } #end failed descramble
+      
+      #successful descrambling
+      print("The mermaid says, You are clearly a very intelligent human being! Let me show you something amazing.")
+      readline()
+      print(paste0("She takes you and ", ass, " by the hands and leads you into the water."))
+      readline()
+      print("The mermaid continues, As long you grasp my hand, you will be able to breathe underneath the water.")
+      readline()
+      print("She guides you through the coral reefs, past dolphins and down to the sea floor.")
+      readline()
+      print("A gleaming, metallic city shines through the water ahead, populated by merpeople!")
       
       
       
