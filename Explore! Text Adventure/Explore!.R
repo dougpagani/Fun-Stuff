@@ -306,7 +306,7 @@ explore <- function(){
         readline()
         
         #if search game not played successfully...
-        if(defend != 1){
+        if(talisman != 1){
           print(paste0("There is nothing there! The mermaid is upon you. She stabs at you and ", ass, "."))
           readline()
           print("You are no match for her power and quickness!")
@@ -317,14 +317,14 @@ explore <- function(){
           break
         } #end search unsuccessful
         
-        if(defend == 1){
+        if(talisman == 1){
           print("What is this? You pull from your pocket the talisman you found in the sand.")
           readline()
           print("It has a sharp edge! You raise it in front of you and you can see fear creep into the mermaid's eyes.")
           readline()
           print("It is time to do battle!")
           readline()
-          print("Each time you see the mermaid's dagger --||----- press Enter quickly to defend yourself!")
+          print("Each time you see the mermaid's dagger --||----- press Enter quickly to defend yourself. You will only have a half second!")
           readline()
           readline("Ready? Press enter to battle: ")
           
