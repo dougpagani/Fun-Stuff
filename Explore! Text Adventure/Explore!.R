@@ -50,7 +50,10 @@ explore <- function(){
   while(continue == 1){
     
     print("Welcome to Explorers of the Unknown!")
+    
+    #reset stuff for replay value
     Total.Points <<- 0
+    talisman <<- 0
     readline()
     
     #username entry
@@ -324,7 +327,7 @@ explore <- function(){
           readline()
           print("It is time to do battle!")
           readline()
-          print("Each time you see the mermaid's dagger --||----- press Enter quickly to defend yourself. You will only have a half second!")
+          print("Each time you see the mermaid's dagger --||----- press Enter quickly to defend yourself. You will only have 0.5 seconds!")
           readline()
           readline("Ready? Press enter to battle: ")
           
