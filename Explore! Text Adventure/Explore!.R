@@ -382,13 +382,36 @@ explore <- function(){
       print("She guides you through the coral reefs, past dolphins and down to the sea floor.")
       readline()
       print("A gleaming, metallic city shines through the water ahead, populated by merpeople!")
+      readline()
+      print(paste0("The mermaid says, I can turn you and ", ass, " into merpeople and you can live here with us forever! What do you think?"))
+      merya <- readline("Type 1 to transform into a merperson, type 2 to ask to return to the surface: ")
       
+      if(merya == "1"){
+        print(paste0("The mermaid hands you and ", ass, " each a piece of kelp. You swallow it."))
+        readline()
+        print("You can feel gills sprout from your neck. You look down and your legs are gone! They have been replaced by a great, scaly tail.")
+        readline()
+        print(paste0("You let go of the mermaid's hand and the water is just like air! You and ", ass, " swim to the underwater city to live happily ever after."))
+        readline()
+        break
+      }
       
+      if(merya == "2"){
+        print("The mermaid says, I'm sorry, you cannot return to the surface. We cannot risk our secret being exposed.")
+        readline()
+        print("The mermaid lets go of your hand. Your throat is immediately clogged with water. The surface of the water is hundreds of feet above you!")
+        readline()
+        print(paste0("As you and ", ass, "start to swim desperately upwards for air, the mermaid grabs you both by the ankles."))
+        readline()
+        print("She holds you there under the water. You struggle and thrash as the water overwhelms you, and everything becomes very quiet...")
+        readline()
+        Total.Points <<- 0
+        print(paste0("GAME OVER, ", username, "!"))
+        readline()
+        break
+      }
       
-      
-      break
     }#end beach adventure
-        
   }#end while loop
   
   #ending message
