@@ -4,7 +4,8 @@
 
 #data available at: http://www.fec.gov/disclosurep/PDownload.do
 
-#input: URL for raw csv dataset on github
+#input: URL for raw csv dataset on github, candidates name 
+#output: prints top three places the campaign has eaten at, dataframe showing all food expenses
 
 fave_food <- function(Dataset_URL, Candidate_Name = "Your Candidate"){
   
