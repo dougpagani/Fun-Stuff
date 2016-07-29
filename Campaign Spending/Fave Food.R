@@ -2,29 +2,32 @@
 #Function to analyze public campaign expenditure data and 
 #determine where that candidate eats the most
 
-#data available at: http://www.fec.gov/disclosurep/PDownload.do
-
-#input: URL for raw csv dataset on github, candidates name 
-#output: prints top three places the campaign has eaten at, dataframe showing all food expenses
-
-fave_food <- function(Dataset_URL, Candidate_Last_Name = "Your Candidate"){
+fave_food <- function(Candidate_Last_Name){
+  
+  #So you know that its working
+  print("Please wait - compiling results...")
   
   #Data download -- if statement to cut runtime on successive iterations
-  if(data_download != "complete"){
+  if(exists("data_download") == FALSE){
     
     #Prep work
     library(RCurl)
     
     #Get that data
-    cand_library <- getURL(Dataset_URL)
-    campaign_expense <- read.csv(text = cand_library)
-    data_download <- "complete"
+    cand_library <- getURL("https://raw.githubusercontent.com/djmirabito/Fun-Stuff/master/Campaign%20Spending/2016%20Campaign%20Spending.csv")
+    campaign_expense <<- read.csv(text = cand_library)
+    data_download <<- "Complete"
 
   }#end if data download incomplete
   
-  #subset it
+  #character swaps
   campaign_expense$disb_desc <- as.character(campaign_expense$disb_desc)
-  food_spending <- subset(campaign_expense, grepl("FOOD", campaign_expense$disb_desc) == TRUE)
+  Candidate_Last_Name <- as.character(Candidate_Last_Name)
+  
+  #subset for candidate of interest and food words
+  VIP_spending <- subset(campaign_expense, grepl(Candidate_Last_Name, campaign_expense$cand_nm) == TRUE)
+  food_spending <- subset(VIP_spending, grepl("FOOD", VIP_spending$disb_desc) == TRUE | 
+                                        grepl("CATERING", VIP_spending$disb_desc) == TRUE)
   
   #aggregate spending by restaurant
   foodfood <- data.frame(matrix(ncol = 2, nrow = 0))
@@ -56,7 +59,10 @@ fave_food <- function(Dataset_URL, Candidate_Last_Name = "Your Candidate"){
   
   #Make table available and display top three
   FoodSpending <<- FinalFood
-  print(paste0(Candidate_Name, " likes to eat at: "))
+  print(paste0(Candidate_Last_Name, " likes to eat at: "))
   print(FinalFood[1:3,], row.names = FALSE)
+  
+  #source
+  print("Data available at: http://www.fec.gov/disclosurep/PDownload.do")
   
 }
