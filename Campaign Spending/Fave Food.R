@@ -4,11 +4,11 @@
 
 fave_food <- function(Candidate_Last_Name){
   
-  #So you know that its working
-  print("Please wait - compiling results...")
-  
   #Data download -- if statement to cut runtime on successive iterations
   if(exists("data_download") == FALSE){
+    
+    #So you know that its working
+    print("Please wait - compiling results...")
     
     #Prep work
     library(RCurl)
@@ -27,6 +27,11 @@ fave_food <- function(Candidate_Last_Name){
   #subset for candidate of interest and food words
   VIP_spending <- subset(campaign_expense, grepl(Candidate_Last_Name, campaign_expense$cand_nm) == TRUE)
   food_spending <- subset(VIP_spending, grepl("FOOD", VIP_spending$disb_desc) == TRUE | 
+                                        grepl("BEVERAGE", VIP_spending$disb_desc) == TRUE | 
+                                        grepl("FOOD", VIP_spending$disb_desc) == TRUE | 
+                                        grepl("FOOD", VIP_spending$disb_desc) == TRUE | 
+                                        grepl("FOOD", VIP_spending$disb_desc) == TRUE | 
+                                        grepl("FOOD", VIP_spending$disb_desc) == TRUE | 
                                         grepl("CATERING", VIP_spending$disb_desc) == TRUE)
   
   #aggregate spending by restaurant
@@ -60,9 +65,10 @@ fave_food <- function(Candidate_Last_Name){
   #Make table available and display top three
   FoodSpending <<- FinalFood
   print(paste0(Candidate_Last_Name, " likes to eat at: "))
-  print(FinalFood[1:3,], row.names = FALSE)
+  print(FoodSpending)
   
   #source
   print("Data available at: http://www.fec.gov/disclosurep/PDownload.do")
+  print("Data downloaded: July 29, 2016")
   
 }
