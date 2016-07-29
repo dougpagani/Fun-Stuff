@@ -7,14 +7,20 @@
 #input: URL for raw csv dataset on github, candidates name 
 #output: prints top three places the campaign has eaten at, dataframe showing all food expenses
 
-fave_food <- function(Dataset_URL, Candidate_Name = "Your Candidate"){
+fave_food <- function(Dataset_URL, Candidate_Last_Name = "Your Candidate"){
   
-  #Prep work
-  library(RCurl)
-  
-  #Get that data
-  cand_library <- getURL(Dataset_URL)
-  campaign_expense <- read.csv(text = cand_library)
+  #Data download -- if statement to cut runtime on successive iterations
+  if(data_download != "complete"){
+    
+    #Prep work
+    library(RCurl)
+    
+    #Get that data
+    cand_library <- getURL(Dataset_URL)
+    campaign_expense <- read.csv(text = cand_library)
+    data_download <- "complete"
+
+  }#end if data download incomplete
   
   #subset it
   campaign_expense$disb_desc <- as.character(campaign_expense$disb_desc)
