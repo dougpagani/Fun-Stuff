@@ -2,6 +2,9 @@
 #Function to analyze public campaign expenditure data and 
 #determine how that candidate spends $ on ads
 
+#Input: Last name of candidate (ex. Clinton) as character (i.e. in quotations)
+#Output: table showing advertising spending and total ad spending
+
 Ad_Spend_Bot <- function(Candidate_Last_Name){
   
   #Data download -- if statement to cut runtime on successive iterations
