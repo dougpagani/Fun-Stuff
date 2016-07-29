@@ -4,11 +4,6 @@
 
 Ad_Spend_Bot <- function(Candidate_Last_Name){
   
-  #Check for proper user input
-  if(is.character(Candidate_Last_Name) == FALSE){
-    stop("Please enter the candidate's last name with quotation marks around it.")
-  }
-  
   #Data download -- if statement to cut runtime on successive iterations
   if(exists("data_download") == FALSE){
     
