@@ -38,7 +38,8 @@ Ad_Spend_Bot <- function(Candidate_Last_Name){
                                       grepl("ADVERTISNG", VIP_spending$disb_desc) == TRUE |
                                       grepl("AD EXPENSE", VIP_spending$disb_desc) == TRUE |
                                       grepl("AD SERVICE", VIP_spending$disb_desc) == TRUE |
-                                      grepl("AD SERVICES", VIP_spending$disb_desc) == TRUE
+                                      grepl("AD SERVICES", VIP_spending$disb_desc) == TRUE |
+                                      grepl("ADVETISING", VIP_spending$disb_desc) == TRUE 
                           )#close subset for advertising
   
   #aggregate spending by ad seller
