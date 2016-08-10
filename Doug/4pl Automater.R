@@ -25,8 +25,14 @@ EC50_calc <- function(file_location){
   #Reading in raw data#
   #####################
   
+  #message to user
+  print(paste0("Reading in the raw data from ", file_location))
+  
   #pull .csv file from location specified by user
   raw <- read.csv(file_location)
+  
+  #message to user
+  print("Raw data successfully loaded.")
   
   #keep only rows that are blank in the 1st and 2nd columns
   raw_sub1 <- subset(raw, raw$X..BLOCKS..9 == "" & raw$X == "")
@@ -67,16 +73,19 @@ EC50_calc <- function(file_location){
     
   } #end plate and index number loop
   
-  ###############
-  #Getting Fancy#
-  ###############
+  #report plate count to user
+  print(paste0("Model fitting will be completed for ", plate_count, " plates."))
+  
+  #####################################################################
+  #Create dataframe objects in standard format to feed to model fitter#
+  #####################################################################
   
   #create a dataframe for each row of the matrix in order to fit a model to each one
   #first, shell dataframe
   shell <- data.frame(matrix(ncol = 4, nrow = 12))
   colnames(shell) <- c("Plate", "Index", "DF", "AU")
-  shell$DF <- c(1000,	3000,	9000,	27000,	81000,	243000,	729000,	
-                     2187000,	6561000,	19683000,	59049000,	177147000)
+  shell$DF <- c(1000, 3000, 9000, 27000, 81000, 243000, 729000, 
+                2187000, 6561000, 19683000, 59049000, 177147000)
   
   #create a ton of dataframes to be fed to the model fitter
   for(i in 1:raw_sub2_l){
@@ -105,6 +114,8 @@ EC50_calc <- function(file_location){
   #Analysis#
   ##########
   
+  print("Fitting models...")
+  
   #pull each dataframe and run it through the model fitter
   for(i in 1:raw_sub2_l){
     
@@ -118,6 +129,16 @@ EC50_calc <- function(file_location){
     
     #create new model object for plotting
     assign(paste0("model", i), boohoo)
+    
+    #report progress to user
+    if(i %% 10 == 0){
+      print(paste0("Fitting model for row ", i, " of ", raw_sub2_l))
+    }
+    
+    #final progress report
+    if(i == raw_sub2_l){
+      print("Model fitting and EC50 calculation complete.")
+    }
     
   } #end model fitter loop
   
