@@ -5,7 +5,7 @@
 #for testing:
 file_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
 
-EC50_calc <- function(file_location){
+EC50_calc <- function(read_location, save_location){
   
   ###########
   #Prep Work#
@@ -26,10 +26,10 @@ EC50_calc <- function(file_location){
   #####################
   
   #message to user
-  print(paste0("Reading in the raw data from ", file_location))
+  print(paste0("Reading in the raw data from ", read_location))
   
   #pull .csv file from location specified by user
-  raw <- read.csv(file_location)
+  raw <- read.csv(read_location)
   
   #message to user
   print("Raw data successfully loaded.")
@@ -142,7 +142,31 @@ EC50_calc <- function(file_location){
     
   } #end model fitter loop
   
+  #######################
+  #Final output creation#
+  #######################
+  
   #Match multiple measurements to move EC50's back to raw data file
+  for(i in 1:raw_sub2_l){
+    
+    #get three measurements to match to original file
+    rrr <- raw_sub2[i, ]
+    t1 <- rrr[1, 4]
+    t2 <- rrr[1, 5]
+    t3 <- rrr[1, 6]
+    
+    #what row in the original file has these same values?
+    sol <- as.numeric(which(raw[,4] == t1 & raw[,5] == t2 & raw[,6] == t3))
+    
+    #EC50 calculated for row
+    key <- raw_sub2[i, 15]
+    
+    #move it to raw
+    raw[sol, 15] <- key
+  }
+  
+  #write it out
+  write.csv(raw, save_location)
   
 } #end function
 
