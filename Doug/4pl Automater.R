@@ -121,6 +121,8 @@ EC50_calc <- function(file_location){
     
   } #end model fitter loop
   
+  #Match multiple measurements to move EC50's back to raw data file
+  
 } #end function
 
 
