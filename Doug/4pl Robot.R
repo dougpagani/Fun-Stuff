@@ -2,15 +2,14 @@
 #Arguments: read_location - provide the file path to the raw data (should always end in .csv)
 #           save_location - provide file path to a folder where you would like the .csv and .pdf saved
 
-#for testing:
-my_read <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
-my_save <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug"
-
 Fourpl.robot <- function(read_location, save_location){
   
   ###########
   #Prep Work#
   ###########
+  
+  #for app to work
+  if(read_location != "..." & save_location != "..."){
   
   #load package drc for model fitting - if error, install and then load
   tryCatch(library(drc), 
@@ -211,6 +210,8 @@ Fourpl.robot <- function(read_location, save_location){
   
   #final message
   print(paste0("Function complete - files saved to ", save_location))
+  
+  } #end original if statement
   
 } #end function
 
