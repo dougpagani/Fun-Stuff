@@ -11,13 +11,6 @@ Fourpl.robot <- function(read_location, save_location){
   #for app to work
   if(read_location != "..." & save_location != "..."){
   
-  #load package drc for model fitting - if error, install and then load
-  tryCatch(library(drc), 
-           error = function(e){
-             install.packages("drc")
-             library(drc)
-           })
-  
   #avoid auto-converting to factor when pulling in data frames
   options(stringsAsFactors = FALSE)
   

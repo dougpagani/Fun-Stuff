@@ -1,5 +1,6 @@
 library(shiny)
 library(RCurl)
+library(drc)
 source_https <- function(url, ...) {
   
   #parse and evaluate each .R script
