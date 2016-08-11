@@ -1,10 +1,10 @@
-#4pl Automater
-#input: file location of raw data
-#output: EC50 added to raw data file
+#Function to take raw data, fit a 4pl model for each row, calculate the EC50 and create a pdf of plots
+#Arguments: read_location - provide the file path to the raw data (should always end in .csv)
+#           save_location - provide file path to a folder where you would like the .csv and .pdf saved
 
 #for testing:
 read_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
-save_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\Output.csv"
+save_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug"
 
 EC50_calc <- function(read_location, save_location){
   
@@ -147,6 +147,10 @@ EC50_calc <- function(read_location, save_location){
   #Final output creation#
   #######################
   
+  #####
+  #CSV#
+  #####
+  
   #Match multiple measurements to move EC50's back to raw data file
   for(i in 1:raw_sub2_l){
     
@@ -166,22 +170,30 @@ EC50_calc <- function(read_location, save_location){
     raw[sol, 15] <- key
   }
   
-  #purge NA values from raw
+  #make all NA values look blank for Excel sheet
   raw[is.na(raw)] <- " "
   
   #write it out
-  write.csv(raw, save_location, row.names = FALSE)
+  write.csv(raw, paste0(save_location, "\\Output.csv"), row.names = FALSE)
   
-  #create pdf of plots
+  #####
+  #PDF#
+  #####
   
+  #for titling each page, let's reset these variables
   plate_count <- 1
   index_count <- 1
   
-  pdf(file = "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\Plots.pdf")
+  #open and develop the pdf
+  pdf(file = paste0(save_location, "\\Plots.pdf"))
   for(i in 1:raw_sub2_l){
     
+    #get a model
     vip <- get(paste0("model", i))
-    title <- paste0("Plate ", plate_count, ", Row ", index_count)
+    
+    #recalculate EC50 and add it to the title of the plot
+    piv <- ED(vip, 50)
+    title <- paste0("Plate ", plate_count, ", Row ", index_count, " (EC50 = ", piv[1], ")")
     plot(vip, main = title)
     
     #if 8 rows have been labeled, reset index to zero
@@ -198,7 +210,7 @@ EC50_calc <- function(read_location, save_location){
   dev.off()
   
   #final message
-  print(paste0("Function complete - file saved to ", save_location))
+  print(paste0("Function complete - files saved to ", save_location))
   
 } #end function
 
