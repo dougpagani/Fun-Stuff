@@ -122,7 +122,7 @@ EC50_calc <- function(read_location, save_location){
     
     #get the dataframe and run it through the fitter
     booyah <- get(paste0("obv", i))
-    boohoo <- drm(AU~DF, Index, data = booyah, fct = LL.4())
+    boohoo <- drm(AU ~ DF, Index, data = booyah, fct = LL.4())
     
     #calculate EC50 and populate it to raw_sub2
     whoa <- ED(boohoo, 50)
@@ -171,6 +171,31 @@ EC50_calc <- function(read_location, save_location){
   
   #write it out
   write.csv(raw, save_location, row.names = FALSE)
+  
+  #create pdf of plots
+  
+  plate_count <- 1
+  index_count <- 1
+  
+  pdf(file = "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\Plots.pdf")
+  for(i in 1:raw_sub2_l){
+    
+    vip <- get(paste0("model", i))
+    title <- paste0("Plate ", plate_count, ", Row ", index_count)
+    plot(vip, main = title)
+    
+    #if 8 rows have been labeled, reset index to zero
+    if(index_count %% 8 == 0){
+      index_count <- 0
+      plate_count <- plate_count + 1
+    }
+    
+    #add one to index each time loop completes
+    index_count <- index_count + 1
+    
+  }
+  
+  dev.off()
   
   #final message
   print(paste0("Function complete - file saved to ", save_location))
