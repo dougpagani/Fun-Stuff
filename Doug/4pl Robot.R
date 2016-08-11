@@ -8,8 +8,12 @@ Fourpl.robot <- function(read_location, save_location){
   #Prep Work#
   ###########
   
-  #for app to work
-  if(read_location != "..." & save_location != "..."){
+  #load package drc for model fitting - if error, install and then load
+  tryCatch(library(drc), 
+           error = function(e){
+             install.packages("drc")
+             library(drc)
+           })
   
   #avoid auto-converting to factor when pulling in data frames
   options(stringsAsFactors = FALSE)
@@ -203,8 +207,6 @@ Fourpl.robot <- function(read_location, save_location){
   
   #final message
   print(paste0("Function complete - files saved to ", save_location))
-  
-  } #end original if statement
   
 } #end function
 
