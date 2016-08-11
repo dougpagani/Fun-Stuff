@@ -1,9 +1,10 @@
 #4pl Automater
-#input needs to be in my_spinach format
-#output: ED50 and plot of each row
+#input: file location of raw data
+#output: EC50 added to raw data file
 
 #for testing:
-file_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
+read_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
+save_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\Output.csv"
 
 EC50_calc <- function(read_location, save_location){
   
@@ -74,7 +75,7 @@ EC50_calc <- function(read_location, save_location){
   } #end plate and index number loop
   
   #report plate count to user
-  print(paste0("Model fitting will be completed for ", plate_count, " plates."))
+  print(paste0("Model fitting will be completed for ", (plate_count-1), " plates."))
   
   #####################################################################
   #Create dataframe objects in standard format to feed to model fitter#
@@ -165,8 +166,14 @@ EC50_calc <- function(read_location, save_location){
     raw[sol, 15] <- key
   }
   
+  #purge NA values from raw
+  raw[is.na(raw)] <- " "
+  
   #write it out
-  write.csv(raw, save_location)
+  write.csv(raw, save_location, row.names = FALSE)
+  
+  #final message
+  print(paste0("Function complete - file saved to ", save_location))
   
 } #end function
 
