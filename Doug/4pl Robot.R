@@ -3,10 +3,10 @@
 #           save_location - provide file path to a folder where you would like the .csv and .pdf saved
 
 #for testing:
-read_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
-save_location <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug"
+my_read <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug\\RAW_2.csv"
+my_save <- "C:\\Users\\Dean\\Documents\\GitHub\\Fun-Stuff\\Doug"
 
-EC50_calc <- function(read_location, save_location){
+Fourpl.robot <- function(read_location, save_location){
   
   ###########
   #Prep Work#
