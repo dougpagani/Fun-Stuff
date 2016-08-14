@@ -2,7 +2,7 @@
 #Arguments: read_location - provide the file path to the raw data (should always end in .csv)
 #           save_location - provide file path to a folder where you would like the .csv and .pdf saved
 
-Fourpl.robot <- function(read_location, save_location){
+Fourpl.robot <- function(){
   
   ###########
   #Prep Work#
@@ -22,14 +22,15 @@ Fourpl.robot <- function(read_location, save_location){
   #Reading in raw data#
   #####################
   
-  #message to user
+  #User entry - raw data
+  print("Welcome to the 4pl Robot!")
+  print("Please select your raw data file:")
+  read_location <- file.choose()
   print(paste0("Reading in the raw data from ", read_location))
-  
-  #pull .csv file from location specified by user
   raw <- read.csv(read_location)
   
-  #message to user
-  print("Raw data successfully loaded.")
+  #User entry - save location
+  save_location <- readline("Please enter the filepath for the folder where you would like output saved: ")
   
   #keep only rows that are blank in the 1st and 2nd columns
   raw_sub1 <- subset(raw, raw$X..BLOCKS..9 == "" & raw$X == "")
